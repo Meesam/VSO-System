@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34316.72
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSO-SystemApp", "VSO-SystemApp\VSO-SystemApp.csproj", "{708E2535-9493-4C55-8DBD-C16E3556C246}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VSO-SystemApp", "VSO-SystemApp\VSO-SystemApp.csproj", "{708E2535-9493-4C55-8DBD-C16E3556C246}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSP.Models", "VSP.Models\VSP.Models.csproj", "{BB894ACF-8179-40FB-9526-9E6EB7A3CFEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VSP.Models", "VSP.Models\VSP.Models.csproj", "{BB894ACF-8179-40FB-9526-9E6EB7A3CFEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSO.DataAccess", "VSO.DataAccess\VSO.DataAccess.csproj", "{3FF83748-920D-4442-923D-DD9B21BD623D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VSO.DataAccess", "VSO.DataAccess\VSO.DataAccess.csproj", "{3FF83748-920D-4442-923D-DD9B21BD623D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
