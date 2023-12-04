@@ -17,6 +17,12 @@ namespace VSO.DataAccess.Data
         public DbSet<EmailAddress> EmailAddresses { get; set; }
 
         public DbSet<Address> Address { get; set; }
+
+        public DbSet<Project> Projects { get; set; }
+
+        public DbSet<ProjectItem> ProjectItems { get; set; }
+
+        public DbSet<User> Users { get; set; }
         
     }
 }

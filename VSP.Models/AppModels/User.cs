@@ -8,34 +8,32 @@ using System.Threading.Tasks;
 
 namespace VSP.Models.AppModels
 {
-    public class Customer
+    public class User
     {
         [Key]
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(200)]
+        [MaxLength(255)]
         public string? Name { get; set; }
 
         [Required]
-        [MaxLength(255)]
-        public string? Website { get; set; }
+        [MaxLength(50)]
+        public string? Department { get; set; }
 
         [Required]
-        [MaxLength(255)]
-        public string? LogoUrl { get; set; }
+        [MaxLength(50)]
+        public string? Role { get; set; }
 
         [Required, DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
 
         [Required, DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime UpdatedDate { get; set;}
-
-        public List<Address> AddressList { get; set; } = new List<Address>();
-
-        public List<EmailAddress> EmailAddresses { get; set; } = new List<EmailAddress>();
+        public DateTime UpdatedDate { get; set; } = DateTime.Now;
 
         public List<Project> Projects { get; set; } = new List<Project>();
-
+        public List<ProjectItem> ProjectItems { get; set; } = new List<ProjectItem>();
+        public List<EmailAddress> EmailAddresses { get; set; } = new List<EmailAddress>();
+        public List<Address> Addresss { get; set; } = new List<Address>();
     }
 }

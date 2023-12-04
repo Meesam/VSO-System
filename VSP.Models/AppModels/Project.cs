@@ -8,31 +8,37 @@ using System.Threading.Tasks;
 
 namespace VSP.Models.AppModels
 {
-    public class EmailAddress
+    public class Project
     {
         [Key]
-        public int Id{ get; set; }
+        public int Id { get; set; }
 
         [Required]
-        [MaxLength(50)]
-        public string? Phone { get; set; }
+        [MaxLength(100)]
+        public string? Name { get; set; }
+
+        public string? Description { get; set; }
 
         [Required]
-        [MaxLength(255)]
-        public string? Email { get; set; }
+        [MaxLength(100)]
+        public string? ProjectType { get; set;}
 
         [Required]
-        [MaxLength(20)]
-        public string? EmailType { get; set; }
+        [MaxLength(100)]
+        public string? ProjectStatus { get; set; }
 
         [Required]
-        public bool IsPrimary { get; set; } = false;
+        public DateTime ProjectStartDate { get; set; }
+
+        public DateTime? ProjectEndDate { get; set; }
 
         [Required, DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime CreatedDate { get; set; } = DateTime.Now;
 
         [Required, DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime UpdatedDate { get; set; } = DateTime.Now;
+
+        public List<ProjectItem> ProjectItems { get; set;} = new List<ProjectItem>();
 
     }
 }

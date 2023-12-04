@@ -8,38 +8,38 @@ using System.Threading.Tasks;
 
 namespace VSP.Models.AppModels
 {
-    public class Address
+    public class ProjectItem
     {
         [Key]
         public int Id { get; set; }
 
         [Required]
         [MaxLength(255)]
-        public string? Street { get; set; }
+        public string? Title { get; set; }
+
+        public string? Description { get; set; }
 
         [Required]
         [MaxLength(100)]
-        public string? City { get; set; }
-
-        [Required]
-        [MaxLength(20)]
-        public string? State { get; set; }
-
-        [Required]
-        [MaxLength(20)]
-        public string? AddressType { get; set; }
-
-        [Required]
-        public bool IsCurrentAddress { get; set; } = false;
+        public string? ItemType { get; set; }
 
         [Required]
         [MaxLength(50)]
-        public string? PostalCode { get; set;}
+        public string? ItemStatus { get; set; }
+
+        [Required]
+        public int ParentItem { get; set; }
+
+        [Required]
+        public DateTime? ItemStartDate { get; set; }
+
+        public DateTime? ItemEndDate { get; set; }
 
         [Required, DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
 
         [Required, DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime UpdatedDate { get; set; }
+        public DateTime UpdatedDate { get; set; } = DateTime.Now;
+
     }
 }

@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.EntityFrameworkCore;
 using VSO.DataAccess.Data;
+using VSO.DataAccess.Repositories.Implementation;
+using VSO.DataAccess.Repositories.Interfaces;
 using VSO_SystemApp.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,12 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddDbContext<VsoDbConetxt>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<IUser, UserImplement>();
+builder.Services.AddScoped<ICustomer, CustomerImplement>();
+builder.Services.AddScoped<IAddress, AddressImplement>();
+builder.Services.AddScoped<IEmailAddresses, EmailAddressesImplement>();
+builder.Services.AddScoped<IProject, ProjectImplement>();
+builder.Services.AddScoped<IProjectItem, ProjectItemImpelement>();
 
 var app = builder.Build();
 
