@@ -5,6 +5,10 @@ VisualStudioVersion = 17.8.34316.72
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSO-SystemApp", "VSO-SystemApp\VSO-SystemApp.csproj", "{708E2535-9493-4C55-8DBD-C16E3556C246}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSP.Models", "VSP.Models\VSP.Models.csproj", "{BB894ACF-8179-40FB-9526-9E6EB7A3CFEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSO.DataAccess", "VSO.DataAccess\VSO.DataAccess.csproj", "{3FF83748-920D-4442-923D-DD9B21BD623D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{708E2535-9493-4C55-8DBD-C16E3556C246}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{708E2535-9493-4C55-8DBD-C16E3556C246}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{708E2535-9493-4C55-8DBD-C16E3556C246}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB894ACF-8179-40FB-9526-9E6EB7A3CFEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB894ACF-8179-40FB-9526-9E6EB7A3CFEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB894ACF-8179-40FB-9526-9E6EB7A3CFEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB894ACF-8179-40FB-9526-9E6EB7A3CFEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FF83748-920D-4442-923D-DD9B21BD623D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FF83748-920D-4442-923D-DD9B21BD623D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FF83748-920D-4442-923D-DD9B21BD623D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FF83748-920D-4442-923D-DD9B21BD623D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
