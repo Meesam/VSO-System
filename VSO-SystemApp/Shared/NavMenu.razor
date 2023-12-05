@@ -1,10 +1,27 @@
-﻿<div class="bg-gray-400 border-b w-52 flex items-center space-x-4 ">
-    <div class="pl-5 h-full">
+﻿<div class="flex flex-col bg-neutral-200 w-60 p-3 border-r-1">
+    <div class="flex items-center gap-2 px-1 py-3">
         <i class="bi bi-ticket-perforated-fill text-xl text-sky-500"></i>
-        <a class="text-sky-500 font-bold text-xl" href="">VSO System</a>
+        <span class="text-xl text-sky-500 font-bold">VSO System</span>
     </div>
+   <div class="flex-1">
+      @foreach(var sideBarItem in SideBars)
+        {
+          <div>@sideBarItem.Title</div>
+        }
+    </div>
+   <div>Bottom Part</div>
 </div>
 
 @code {
-   
+    private List<SideBar> SideBars { get; set; }
+
+    protected override void OnInitialized()
+    {
+        SideBars = new List<SideBar>
+        {
+          new SideBar("Customers", "/customers", "Persons") ,
+          new SideBar("Users", "/users", "Persons"),
+          new SideBar("Projects", "/projects", "Task")
+        };
+    }
 }
