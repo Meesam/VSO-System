@@ -23,9 +23,7 @@
     th{
         @apply font-semibold;
     }
-    a {
-       @apply text-sky-500 hover:underline;
-    }
+
 
   
 }

@@ -1,0 +1,27 @@
+﻿
+    <NavLink href="@sideBarItem.Url" Match="NavLinkMatch.All" class="flex items-center gap-2 font-light 
+         px-3 py-2 hover:bg-neutral-300 hover:no-underline 
+         rounded-md text-base text-neutral-600" ActiveClass="bg-neutral-300">
+    
+        @switch(sideBarItem.Icon)
+        {
+            case "Person":
+            <i class="bi bi-people-fill"></i>
+            break;
+
+            case "Customer":
+            <i class="bi bi-person-workspace"></i>
+            break;
+
+           case "Project":
+            <i class="bi bi-kanban-fill"></i>
+            break;
+    }
+        @sideBarItem.Title
+    </NavLink>
+
+
+@code {
+    [Parameter]
+    public SideBar sideBarItem { get; set; }
+}
