@@ -1,6 +1,7 @@
 ﻿@page "/projects"
+@inject NavigationManager NavigationManager
 
-<h3>Projects</h3>
+<Breadcrumb CurrentRoute="@NavigationManager.Uri.Substring(NavigationManager.BaseUri.Length - 1).ToString().Replace("/", "").ToLower()" />
 
 @code {
 

@@ -1,14 +1,14 @@
 ﻿@inherits LayoutComponentBase
 
 <PageTitle>VSO-SystemApp</PageTitle>
-
     <div class="flex flex-row bg-neutral-100 h-screen w-screen overflow-hidden">
         <NavMenu />
-        
-         <div class="p-4">
-            <div class="bg-teal-300">Header</div>
+         <div class="flex-1">
+            <Header />
+            <div class="p-4">
                @Body
+            </div>
+               
           </div>
-        
     </div>
 
