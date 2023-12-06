@@ -2,6 +2,9 @@
 @inject NavigationManager NavigationManager
 
 <Breadcrumb CurrentRoute="@NavigationManager.Uri.Substring(NavigationManager.BaseUri.Length - 1).ToString().Replace("/", "").ToLower()" />
+<PageLayout PageTitle="Users">
+    <div>Hello Users</div>
+</PageLayout>
 
 @code {
 
