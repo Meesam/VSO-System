@@ -1,18 +1,31 @@
 ﻿@inject NavigationManager NavigationManager
 
 <div class="bg-white border-b h-16 px-4 flex justify-between items-center">
-    <HeaderSearch />
-    <div class="flex items-center space-x-4">
-        <div class="text-lg">
-            <i class="bi bi-chat-square-dots text-xl"></i>
-        </div>
-        <div class="text-xl">
-            <i class="bi bi-bell text-xl"></i>
-        </div>
-        <div class="text-xl">
-            <i class="bi bi-person-circle text-xl"></i>
-        </div>
-    </div>
+    <AuthorizeView>
+        <Authorized>
+            <HeaderSearch />
+            <a href="Identity/Account/Manage">Hello @context.User.Identity?.Name</a>
+            <form method="post" action="Identity/Account/LogOut">
+                <button class="p-3 bg-sky-700 text-white" type="submit">Log Out</button>
+            </form>
+            <div class="flex items-center space-x-4">
+                <div class="text-lg">
+                    <i class="bi bi-chat-square-dots text-xl"></i>
+                </div>
+                <div class="text-xl">
+                    <i class="bi bi-bell text-xl"></i>
+                </div>
+                <div class="text-xl">
+                    <i class="bi bi-person-circle text-xl"></i>
+                </div>
+            </div>
+        </Authorized>
+        <NotAuthorized>
+            <a href="Identity/Account/Register">Register</a>
+            <a href="Identity/Account/Login">Login</a>
+        </NotAuthorized>
+    </AuthorizeView>
+    
 </div>
 
 
