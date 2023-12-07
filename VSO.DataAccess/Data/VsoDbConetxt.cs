@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using VSP.Models.AppModels;
 
 namespace VSO.DataAccess.Data
 {
-    public class VsoDbConetxt: DbContext
+    public class VsoDbConetxt: IdentityDbContext
     {
         public VsoDbConetxt(DbContextOptions<VsoDbConetxt> options):base(options) { }
         
