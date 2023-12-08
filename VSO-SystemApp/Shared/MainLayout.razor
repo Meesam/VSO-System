@@ -2,7 +2,12 @@
 
 <PageTitle>VSO-SystemApp</PageTitle>
     <div class="flex flex-row bg-neutral-100 h-screen w-screen overflow-hidden">
-        <NavMenu />
+        <AuthorizeView>
+            <Authorized>
+              <NavMenu />
+            </Authorized>
+        </AuthorizeView>
+        
          <div class="flex-1">
             <Header />
             <div class="p-4">
