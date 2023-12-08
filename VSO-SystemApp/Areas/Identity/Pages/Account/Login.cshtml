@@ -2,15 +2,35 @@
 @model LoginModel
 
 @{
-    ViewData["Title"] = "Log in";
+    ViewData["Title"] = "Login";
 }
 
-<div class="flex justify-center items-center h-screen bg-indigo-600">
-    <div class="w-96 p-6 shadow-lg bg-white rounded-lg">
-        <h1 class="text-sky-500">@ViewData["Title"]</h1>
-        <hr />
+
+    <div class="w-96 p-6 shadow-lg bg-white rounded-md">
+        <h1 class="text-sky-700 text-3xl block text-center font-semibold">@ViewData["Title"]</h1>
+        <hr class="mt-3" />
+        <div class="mt-3">
+           <label for="email" class="block text-sm mb-2">Email</label>
+           <input type="text" id="email" class="border w-full text-sm px-2 py-2 focus:outline-none focus:ring-0 focus:border-gray-600 rounded-md" placeholder="Enter Email..."  />
+        </div>
+        <div class="mt-3">
+            <label for="password" class="block text-sm mb-2">Password</label>
+            <input type="password" id="password" class="border w-full text-sm px-2 py-2 focus:outline-none focus:ring-0 focus:border-gray-600 rounded-md" placeholder="Enter Password..." />
+        </div>
+        <div class="flex justify-between mt-3">
+            <div class="flex items-center gap-1">
+                <input type="checkbox" />
+                <label class="text-sm">Remember Me</label>
+            </div>
+            <div>
+            <a class="text-sky-700 text-sm hover:underline" href="#">Forget Password?</a>
+            </div>
+        </div>
+        <div class="mt-5">
+        <button type="submit" class="border-2 border-sky-700 bg-sky-700 text-white py-1 w-full rounded-md">Login</button>
+        </div>
     </div>
-</div>
+
 
 
 

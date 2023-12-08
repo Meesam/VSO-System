@@ -44,10 +44,13 @@
     </nav>
     </header>
     *@
+    <div class="flex justify-center items-center h-screen bg-neutral-200">
+        <partial name="_CookieConsentPartial" optional />
+        @RenderBody()
+    </div>
 
     
-    <partial name="_CookieConsentPartial" optional />
-    @RenderBody()
+    
     <environment include="Development">
         <script src="~/Identity/lib/jquery/dist/jquery.js"></script>
         <script src="~/Identity/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
