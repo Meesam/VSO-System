@@ -103,7 +103,7 @@ namespace VSO_SystemApp.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl = Url.Content("~/customers");
+            returnUrl = Url.Content("~/dashboard");
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
