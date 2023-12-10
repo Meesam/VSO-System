@@ -1,25 +1,58 @@
 ﻿<NavLink href="" Match="NavLinkMatch.All" class="flex items-center gap-2 font-light
          px-3 py-2 hover:underline
           text-sm text-neutral-600">
-    <i class="bi bi-gear-fill text-sky-700"></i>
-    Settings
+    <i class="@CssClass("bi bi-gear-fill text-sky-700", defaultIconSize)"></i>
+    @if (!isToggled)
+    {
+        @Setting
+    }
 </NavLink>
 <NavLink href="" Match="NavLinkMatch.All" class="flex items-center gap-2 font-light
          px-3 py-2 hover:underline
           text-sm text-neutral-600">
-    <i class="bi bi-question-circle-fill text-sky-700"></i>
-    Help & Support
+    <i class="@CssClass("bi bi-question-circle-fill text-sky-700", defaultIconSize)"></i>
+    @if (!isToggled)
+    {
+        @Help
+    }
 </NavLink>
 <form method="post" action="Identity/Account/LogOut" class="flex items-center gap-2 ml-3">
-    <i class="bi bi-box-arrow-right text-red-600"></i>
+    
     <button class="flex items-center font-light
           py-2
-          text-sm text-red-600 hover:underline" type="submit">
-        Log Out
+          text-sm text-red-600 hover:underline gap-2" type="submit">
+        <i class="@CssClass("bi bi-box-arrow-right text-red-600",defaultIconSize)"></i>
+        @if (!isToggled)
+        {
+            @LogOut
+        }
     </button>
 </form>
 
 
 @code {
+    [Parameter]
+    public bool isToggled { get; set; } = false;
 
+    private string defaultIconSize { get; set; } = "text-base";
+
+    private string defaultItemPosition { get; set; } = "";
+
+    private string Setting { get; set; } = "Setting";
+    private string Help { get; set; } = "Help & Support";
+    private string LogOut { get; set; } = "Log Out";
+
+    protected override void OnParametersSet()
+    {
+        if (isToggled)
+        {
+            defaultIconSize = "text-2xl";
+            defaultItemPosition = "justify-center";
+        }
+        if (!isToggled)
+        {
+            defaultIconSize = "text-base";
+            defaultItemPosition = "";
+        }
+    }
 }

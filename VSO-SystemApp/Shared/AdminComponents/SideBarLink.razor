@@ -1,31 +1,56 @@
 ﻿
-    <NavLink href="@sideBarItem?.Url" Match="NavLinkMatch.All" class="flex items-center gap-2 font-light 
-         px-3 py-2 hover:bg-neutral-300 hover:no-underline 
-         rounded-md text-base text-neutral-600" ActiveClass="bg-neutral-300">
+    <NavLink href="@sideBarItem?.Url" Match="NavLinkMatch.All" class="@CssClass("flex items-center gap-2 font-light", 
+         "px-3 py-2 hover:bg-neutral-300 hover:no-underline",
+         "rounded-md text-base text-neutral-600", defaultItemPosition)" ActiveClass="bg-neutral-300">
     
         @switch(sideBarItem?.Icon)
         {
         case "Dashboard":
-            <i class="bi bi-columns-gap text-sky-700"></i>
+            <i class="@CssClass("bi bi-columns-gap text-sky-700", defaultIconSize)"></i>
             break;
 
             case "Person":
-            <i class="bi bi-people-fill text-sky-700"></i>
+            <i class="@CssClass("bi bi-people-fill text-sky-700", defaultIconSize)"></i>
             break;
 
             case "Customer":
-            <i class="bi bi-person-workspace text-sky-700"></i>
+            <i class="@CssClass("bi bi-person-workspace text-sky-700", defaultIconSize)"></i>
             break;
 
            case "Project":
-            <i class="bi bi-kanban-fill text-sky-700"></i>
+            <i class="@CssClass("bi bi-kanban-fill text-sky-700", defaultIconSize)"></i>
             break;
     }
+    @if (!isToggled)
+    {
         @sideBarItem?.Title
+    }
+
     </NavLink>
 
 
 @code {
     [Parameter]
     public SideBar? sideBarItem { get; set; }
+
+    [Parameter]
+    public bool isToggled { get; set; } = false;
+
+    private string defaultIconSize { get; set; } = "text-base";
+
+    private string defaultItemPosition { get; set; } = "";
+
+    protected override void OnParametersSet()
+    {
+        if (isToggled)
+        {
+            defaultIconSize = "text-2xl";
+            defaultItemPosition = "justify-center";
+        }
+        if (!isToggled)
+        {
+            defaultIconSize = "text-base";
+            defaultItemPosition = "";
+        }
+    }
 }
