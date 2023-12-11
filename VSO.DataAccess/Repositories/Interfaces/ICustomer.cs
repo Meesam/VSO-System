@@ -19,5 +19,7 @@ namespace VSO.DataAccess.Repositories.Interfaces
 
         public Customer GetCustomerById(int id);
 
+        public void Save();
+
     }
 }
