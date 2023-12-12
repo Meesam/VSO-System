@@ -17,7 +17,7 @@ namespace VSO.DataAccess.Repositories.Interfaces
 
         public Task<IQueryable<Customer>> GetAllCustomer();
 
-        public Customer GetCustomerById(int id);
+        public Customer? GetCustomerById(int id);
 
         public void Save();
 

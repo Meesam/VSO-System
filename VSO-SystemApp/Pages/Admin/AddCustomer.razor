@@ -1,4 +1,5 @@
 ﻿@page "/addcustomer"
+@page "/addcustomer/{id:int}"
 @inject NavigationManager NavigationManager
 @inject ICustomer ICustomerService
 
@@ -47,17 +48,30 @@
 
 
 @code {
-    private Customer customer { get; set; }
+    private Customer? customer { get; set; }
+
+    [Parameter]
+    public int Id { get; set; }
 
     protected override void OnInitialized()
     {
-        customer = new();
+        if(Id <= 0)
+        {
+            customer = new();
+        } 
+        else
+        {
+            customer = ICustomerService.GetCustomerById(Id);
+        }
     }
 
     private void SubmitForm()
     {
-        ICustomerService.AddCustomer(customer);
-        customer = new();
+        if (customer != null)
+        {
+            ICustomerService.AddCustomer(customer);
+            customer = new();
+        }
     }
 
     private void RedirectToCustomerList()

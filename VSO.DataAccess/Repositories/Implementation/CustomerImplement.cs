@@ -25,36 +25,81 @@ namespace VSO.DataAccess.Repositories.Implementation
                 _context.Customers.Add(customer);
                 Save();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine($"Error on server is {ex.ToString()}");
+                throw;
             }
             
         }
 
         public void DeleteCustomer(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var customer = _context.Customers.FirstOrDefault(c => c.Id == id);
+                if(customer != null)
+                {
+                    _context.Customers.Remove(customer);
+                    Save();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        public async Task<IQueryable<Customer>> GetAllCustomer()
+        public Task<IQueryable<Customer>> GetAllCustomer()
         {
-            return _context.Customers.AsQueryable();
+            try
+            {
+                return Task.FromResult(_context.Customers.AsQueryable());
+            } 
+            catch (Exception)
+            {
+                throw;
+            }
+            
         }
 
-        public Customer GetCustomerById(int id)
+        public Customer? GetCustomerById(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var customer = _context.Customers.FirstOrDefault(c => c.Id == id);
+                if (customer == null)
+                {
+                    return null;
+                }
+                else { return customer; }
+            }
+            catch (Exception) 
+            {
+                throw;
+            }
+
+        }
+
+        public void UpdateCustomer(Customer customer)
+        {
+            try
+            {
+                var customerData = _context.Customers.FirstOrDefault(c => c.Id == customer.Id);
+                if (customer != null)
+                {
+                    _context.Customers.Update(customer);
+                    Save();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public void Save()
         {
             _context.SaveChanges();
-        }
-
-        public void UpdateCustomer(Customer customer)
-        {
-            throw new NotImplementedException();
         }
     }
 }

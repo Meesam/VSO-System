@@ -1,4 +1,4 @@
-﻿
+﻿@inject NavigationManager NavigationManager
 
 @if (TableData == null || Columns == null)
 {
@@ -22,7 +22,7 @@ else
         <tbody>
             @foreach (var item in TableData)
             {
-                <tr class="bg-white hover:bg-gray-50 cursor-pointer">
+                <tr class="bg-white hover:bg-gray-50 cursor-pointer" @onclick="@(()=> RedirectToAddCustomerWithId(item.Id))">
                     <td class="p-3 text-sm text-gray-700">@item.Name</td>
                     <td class="p-3 text-sm text-gray-700">@item.Website</td>
                     <td class="p-3 text-sm text-gray-700">Na</td>
@@ -42,4 +42,9 @@ else
 
     [Parameter]
     public List<Customer>? TableData { get; set; }
+
+    private void RedirectToAddCustomerWithId(int id)
+    {
+        NavigationManager.NavigateTo($"/addcustomer/{id}");
+    }
 }
