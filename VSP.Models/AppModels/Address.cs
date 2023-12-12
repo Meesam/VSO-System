@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace VSP.Models.AppModels
 {
-    public class Address
+    public class Address: DateTimeClass
     {
         [Key]
         public int Id { get; set; }
@@ -35,11 +35,5 @@ namespace VSP.Models.AppModels
         [Required]
         [MaxLength(50)]
         public string? PostalCode { get; set;}
-
-        [Required, DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime CreatedDate { get; set; }
-
-        [Required, DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime UpdatedDate { get; set; }
     }
 }

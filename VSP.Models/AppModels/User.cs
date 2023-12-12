@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace VSP.Models.AppModels
 {
-    public class User
+    public class User: DateTimeClass
     {
         [Key]
         public int Id { get; set; }
@@ -24,12 +24,6 @@ namespace VSP.Models.AppModels
         [Required]
         [MaxLength(50)]
         public string? Role { get; set; }
-
-        [Required, DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
-
-        [Required, DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime UpdatedDate { get; set; } = DateTime.Now;
 
         public List<Project> Projects { get; set; } = new List<Project>();
         public List<ProjectItem> ProjectItems { get; set; } = new List<ProjectItem>();

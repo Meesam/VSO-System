@@ -15,7 +15,7 @@ namespace VSO.DataAccess.Repositories.Interfaces
 
         public void DeleteCustomer(int id);
 
-        public List<Customer> GetAllCustomer();
+        public Task<IQueryable<Customer>> GetAllCustomer();
 
         public Customer GetCustomerById(int id);
 

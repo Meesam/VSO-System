@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace VSP.Models.AppModels
 {
-    public class EmailAddress
+    public class EmailAddress: DateTimeClass
     {
         [Key]
         public int Id{ get; set; }
@@ -27,12 +27,6 @@ namespace VSP.Models.AppModels
 
         [Required]
         public bool IsPrimary { get; set; } = false;
-
-        [Required, DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
-
-        [Required, DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime UpdatedDate { get; set; } = DateTime.Now;
 
     }
 }

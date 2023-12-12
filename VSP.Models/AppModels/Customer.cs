@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace VSP.Models.AppModels
 {
-    public class Customer
+    public class Customer : DateTimeClass
     {
         [Key]
         public int Id { get; set; }
@@ -24,12 +24,6 @@ namespace VSP.Models.AppModels
         [Required]
         [MaxLength(255)]
         public string? LogoUrl { get; set; }
-
-        [Required, DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime CreatedDate { get; set; }
-
-        [Required, DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime UpdatedDate { get; set;}
 
         public List<Address> AddressList { get; set; } = new List<Address>();
 

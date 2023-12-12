@@ -1,5 +1,6 @@
 ﻿@page "/customers"
 @inject NavigationManager NavigationManager
+@inject ICustomer ICustomerService
 
 <Breadcrumb CurrentRoute="@NavigationManager.Uri.Substring(NavigationManager.BaseUri.Length - 1).ToString().Replace("/", "").ToLower()" />
 <div class="flex justify-end gap-2 mb-5">
@@ -7,15 +8,23 @@
     <button class="p-2 text-white text-sm bg-sky-700 rounded-md hover:bg-sky-600" @onclick="RedirectToAddEditCustomer"><i class="bi bi-plus-lg"></i> Add New</button>
 </div>
 
-<AppTable Columns="@TableColumnSettings" />
+<AppTable TableData="@customers" Columns="@TableColumnSettings" />
 
 
 @code {
     private List<TableColumnSetting>? TableColumnSettings { get; set; }
+    private List<Customer>? customers { get; set; }
 
     protected override void OnInitialized()
     {
         SetTableColumn();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        IQueryable<Customer> c = await ICustomerService.GetAllCustomer();
+        customers = c.ToList<Customer>();
+
     }
 
     private void SetTableColumn()

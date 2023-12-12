@@ -24,7 +24,6 @@ namespace VSO.DataAccess.Repositories.Implementation
             {
                 _context.Customers.Add(customer);
                 Save();
-
             }
             catch (Exception ex)
             {
@@ -38,9 +37,9 @@ namespace VSO.DataAccess.Repositories.Implementation
             throw new NotImplementedException();
         }
 
-        public List<Customer> GetAllCustomer()
+        public async Task<IQueryable<Customer>> GetAllCustomer()
         {
-            throw new NotImplementedException();
+            return _context.Customers.AsQueryable();
         }
 
         public Customer GetCustomerById(int id)
