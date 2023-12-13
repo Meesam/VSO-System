@@ -30,8 +30,9 @@ else
                     <td class="p-3 text-sm text-gray-700">Na</td>
                     <td class="p-3 text-sm text-gray-700">Na</td>
                     <td class="p-3 text-sm text-gray-700">Na</td>
+                    <td class="p-3 text-sm text-gray-700">Na</td>
                     <td class="p-3 text-sm flex gap-2">
-                        <i class="bi bi-pencil text-sky-500" @onclick="@(()=> RedirectToAddCustomerWithId(item.Id))"></i>
+                        <i class="bi bi-pencil text-sky-500" @onclick="@(()=> RedirectToAddUserWithId(item.Id))"></i>
                         <i class="bi bi-trash3 text-red-500" @onclick="@(()=> DeleteUser(item.Id))"></i>
                     </td>
                 </tr>
@@ -51,7 +52,7 @@ else
     [Parameter]
     public List<User>? TableData { get; set; }
 
-    private void RedirectToAddCustomerWithId(int id)
+    private void RedirectToAddUserWithId(int id)
     {
         NavigationManager.NavigateTo($"/adduser/{id}");
     }
@@ -60,11 +61,10 @@ else
     {
         try
         {
-            //ICustomerService.DeleteCustomer(id);
-            
-            toastService.ShowToast("Customer deleted successfully", ToastLevel.Success);
-            await OnCustomerDeleted.InvokeAsync();
-            NavigationManager.NavigateTo("/customers");
+            IUserService.DeleteUser(id);
+            toastService.ShowToast("User deleted successfully", ToastLevel.Success);
+            await OnUserDeleted.InvokeAsync();
+            NavigationManager.NavigateTo("/users");
         }
         catch (Exception)
         {

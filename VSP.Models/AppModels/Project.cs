@@ -24,10 +24,10 @@ namespace VSP.Models.AppModels
         public string? ProjectType { get; set;}
 
         [Required]
-        [MaxLength(100)]
+       [MaxLength(100)]
         public string? ProjectStatus { get; set; }
 
-        [Required]
+       [Required]
         public DateTime ProjectStartDate { get; set; }
 
         public DateTime? ProjectEndDate { get; set; }

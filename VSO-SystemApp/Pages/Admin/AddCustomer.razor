@@ -27,7 +27,7 @@
                     <ValidationMessage class="text-xs text-red-500" For="@(() => customer.LogoUrl)"></ValidationMessage>
                 </div>
                 <div class="text-right">
-                    <button class="p-2 bg-gray-400 text-white text-sm rounded-md hover:bg-gray-500" @onclick="RedirectToCustomerList">Cancel</button>
+                    <a href="/customers" class="p-[0.6rem] bg-gray-400 text-white text-sm rounded-md hover:bg-gray-500">Cancel</a>
                     <button type="submit" class="p-2 bg-sky-700 text-white text-sm rounded-md hover:bg-sky-600">@ButtonText</button>
                 </div>
             </div>
@@ -94,10 +94,5 @@
             }
 
         }
-    }
-
-    private void RedirectToCustomerList()
-    {
-        NavigationManager.NavigateTo("/customers");
     }
 }

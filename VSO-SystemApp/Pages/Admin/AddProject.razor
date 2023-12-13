@@ -1,51 +1,45 @@
-﻿@page "/addcustomer"
-@page "/addcustomer/{id:int}"
+﻿@page "/addproject"
+@page "/addproject/{id:int}"
 @inject NavigationManager NavigationManager
-@inject IProject ICustomerService
+@inject IProject IProjectService
 @inject ToastService toastService
 
 <Breadcrumb CurrentRoute="@NavigationManager.Uri.Substring(NavigationManager.BaseUri.Length - 1).ToString().Replace("/", "").ToLower()" />
 
-<EditForm Model="@customer" OnValidSubmit="@SubmitForm">
+<EditForm Model="@project" OnValidSubmit="@SubmitForm">
     <DataAnnotationsValidator></DataAnnotationsValidator>
     <div class="flex gap-2">
         <div class="bg-white rounded-lg shadow-md p-4 md:w-1/2">
             <div class="flex flex-col space-y-4">
                 <div class="flex flex-col">
                     <label for="name" class="text-sm text-gray-500">Name</label>
-                    <InputText id="name" @bind-Value="customer.Name" class="w-full border focus:outline-none p-1 px-2 rounded-md text-sm" />
-                    <ValidationMessage class="text-xs text-red-500" For="@(() => customer.Name)"></ValidationMessage>
+                    <InputText id="name" @bind-Value="project.Name" class="w-full border focus:outline-none p-1 px-2 rounded-md text-sm" />
+                    <ValidationMessage class="text-xs text-red-500" For="@(() => project.Name)"></ValidationMessage>
                 </div>
                 <div class="flex flex-col">
-                    <label for="name" class="text-sm text-gray-500 flex-1">Website</label>
-                    <InputText id="name" @bind-Value="customer.Website" class="w-full border focus:outline-none p-1 px-2 rounded-md text-sm" />
-                    <ValidationMessage class="text-xs text-red-500" For="@(() => customer.Website)"></ValidationMessage>
+                    <label for="name" class="text-sm text-gray-500 flex-1">Type</label>
+                    <InputText id="name" @bind-Value="project.ProjectType" class="w-full border focus:outline-none p-1 px-2 rounded-md text-sm" />
+                    <ValidationMessage class="text-xs text-red-500" For="@(() => project.ProjectType)"></ValidationMessage>
                 </div>
                 <div class="flex flex-col">
-                    <label for="name" class="text-sm text-gray-500 flex-1">Logo</label>
-                    <InputText id="name" @bind-Value="customer.LogoUrl" class="w-full border focus:outline-none p-1 px-2 rounded-md text-sm" />
-                    <ValidationMessage class="text-xs text-red-500" For="@(() => customer.LogoUrl)"></ValidationMessage>
+                    <label for="name" class="text-sm text-gray-500 flex-1">Start Date</label>
+                    
+                    <InputDate @bind-Value="project.ProjectStartDate" class="w-full border focus:outline-none p-1 px-2 rounded-md text-sm" />
+                    <ValidationMessage class="text-xs text-red-500" For="@(() => project.ProjectStartDate)"></ValidationMessage>
+                </div>
+                <div class="flex flex-col">
+                    <label for="name" class="text-sm text-gray-500 flex-1">Status</label>
+                    <InputText id="name" @bind-Value="project.ProjectStatus" class="w-full border focus:outline-none p-1 px-2 rounded-md text-sm" />
+                    <ValidationMessage class="text-xs text-red-500" For="@(() => project.ProjectStatus)"></ValidationMessage>
+                </div>
+                <div class="flex flex-col">
+                    <label for="name" class="text-sm text-gray-500 flex-1">Desc.</label>
+                    <InputText id="name" @bind-Value="project.Description" class="w-full border focus:outline-none p-1 px-2 rounded-md text-sm" />
+                    <ValidationMessage class="text-xs text-red-500" For="@(() => project.Description)"></ValidationMessage>
                 </div>
                 <div class="text-right">
-                    <button class="p-2 bg-gray-400 text-white text-sm rounded-md hover:bg-gray-500" @onclick="RedirectToCustomerList">Cancel</button>
+                    <a href="/projects" class="p-[0.6rem] bg-gray-400 text-white text-sm rounded-md hover:bg-gray-500">Cancel</a>
                     <button type="submit" class="p-2 bg-sky-700 text-white text-sm rounded-md hover:bg-sky-600">@ButtonText</button>
-                </div>
-            </div>
-        </div>
-        <div class="bg-white rounded-lg shadow-md p-4 md:w-1/2">
-            <div class="flex flex-col space-y-4">
-                <div class="flex items-center gap-2">
-                    <label for="name" class="text-sm text-gray-500">Name</label>
-                    <InputText id="name" @bind-Value="customer.Name" class="w-full border focus:outline-none p-1 px-2 rounded-md" />
-                </div>
-                <div class="flex items-center gap-2">
-                    <label for="name" class="text-sm text-gray-500">Website</label>
-                    <InputText id="name" @bind-Value="customer.Name" class="w-full border focus:outline-none p-1 px-2 rounded-md" />
-                </div>
-                <div class="text-right">
-                    <button type="submit" class="p-2 bg-sky-700 text-white text-sm rounded-md hover:bg-sky-600">
-                        @ButtonText
-                    </button>
                 </div>
             </div>
         </div>
@@ -55,7 +49,7 @@
 
 
 @code {
-    private Customer? customer { get; set; }
+    private Project? project { get; set; }
     private string ButtonText { get; set; } = "Submit";
 
     [Parameter]
@@ -65,39 +59,34 @@
     {
         if (Id <= 0)
         {
-            customer = new();
+            project = new();
             ButtonText = "Submit";
         }
         else
         {
-            customer = ICustomerService.GetCustomerById(Id);
+            project = IProjectService.GetProjectById(Id);
             ButtonText = "Update";
         }
     }
 
     private void SubmitForm()
     {
-        if (customer != null)
+        if (project != null)
         {
             if (Id <= 0)
             {
-                ICustomerService.AddCustomer(customer);
-                customer = new();
-                toastService.ShowToast("Customer added successfully", ToastLevel.Success);
-                NavigationManager.NavigateTo("/customers");
+                IProjectService.AddProject(project);
+                project = new();
+                toastService.ShowToast("Project added successfully", ToastLevel.Success);
+                NavigationManager.NavigateTo("/projects");
             }
             else
             {
-                ICustomerService.UpdateCustomer(customer);
-                toastService.ShowToast("Customer updated successfully", ToastLevel.Success);
-                NavigationManager.NavigateTo("/customers");
+                IProjectService.UpdateProject(project);
+                toastService.ShowToast("Project updated successfully", ToastLevel.Success);
+                NavigationManager.NavigateTo("/projects");
             }
 
         }
-    }
-
-    private void RedirectToCustomerList()
-    {
-        NavigationManager.NavigateTo("/customers");
     }
 }

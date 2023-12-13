@@ -1,19 +1,33 @@
 ﻿@page "/users"
 @inject NavigationManager NavigationManager
+@inject IUser IUserService
 
 <Breadcrumb CurrentRoute="@NavigationManager.Uri.Substring(NavigationManager.BaseUri.Length - 1).ToString().Replace("/", "").ToLower()" />
 <div class="flex justify-end gap-2 mb-5">
     <HeaderSearch />
-    <button class="p-2 text-white text-sm bg-sky-700 rounded-md"><i class="bi bi-plus-lg"></i> Add New</button>
+    <button class="p-2 text-white text-sm bg-sky-700 rounded-md hover:bg-sky-600" @onclick="RedirectToAddEditUser"><i class="bi bi-plus-lg"></i> Add New</button>
 </div>
-<AppTable Columns="@TableColumnSettings" />
+<UserTable TableData="@users" Columns="@TableColumnSettings" OnUserDeleted="UserDeleted" />
 
 @code {
     private List<TableColumnSetting>? TableColumnSettings { get; set; }
+    private List<User>? users { get; set; }
 
     protected override void OnInitialized()
     {
         SetTableColumn();
+    }
+
+    private async void GetAllUsers()
+    {
+        IQueryable<User> u = await IUserService.GetAllUser();
+        users = u.ToList<User>();
+    }
+
+    protected override Task OnInitializedAsync()
+    {
+        GetAllUsers();
+        return base.OnInitializedAsync();
     }
 
     private void SetTableColumn()
@@ -25,7 +39,18 @@
             new TableColumnSetting("Role", true),
             new TableColumnSetting("Email", true),
             new TableColumnSetting("Projects", false),
-            new TableColumnSetting("No. Items", false)
+            new TableColumnSetting("No. Items", false),
+             new TableColumnSetting("Action", false)
         };
+    }
+
+    protected void UserDeleted()
+    {
+        GetAllUsers();
+    }
+
+    private void RedirectToAddEditUser()
+    {
+        NavigationManager.NavigateTo("/adduser");
     }
 }

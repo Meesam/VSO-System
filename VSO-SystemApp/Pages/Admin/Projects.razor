@@ -1,21 +1,35 @@
 ﻿@page "/projects"
 @inject NavigationManager NavigationManager
+@inject IProject IProjectService
 
 <Breadcrumb CurrentRoute="@NavigationManager.Uri.Substring(NavigationManager.BaseUri.Length - 1).ToString().Replace("/", "").ToLower()" />
 <div class="flex justify-end gap-2 mb-5">
     <HeaderSearch />
-    <button class="p-2 text-white text-sm bg-sky-700 rounded-md"><i class="bi bi-plus-lg"></i> Add New</button>
+    <button class="p-2 text-white text-sm bg-sky-700 rounded-md hover:bg-sky-600" @onclick="RedirectToAddEditProject"><i class="bi bi-plus-lg"></i> Add New</button>
 </div>
-<AppTable Columns="@TableColumnSettings" />
+<ProjectTable TableData="@projects" Columns="@TableColumnSettings" OnProjectDeleted="ProjectDeleted" />
 
 
 @code {
 
     private List<TableColumnSetting>? TableColumnSettings { get; set; }
+    private List<Project>? projects { get; set; }
 
     protected override void OnInitialized()
     {
         SetTableColumn();
+    }
+
+    private async void GetAllProjects()
+    {
+        IQueryable<Project> p = await IProjectService.GetAllProject();
+        projects = p.ToList<Project>();
+    }
+
+    protected override Task OnInitializedAsync()
+    {
+        GetAllProjects();
+        return base.OnInitializedAsync();
     }
 
     private void SetTableColumn()
@@ -28,7 +42,18 @@
             new TableColumnSetting("Start Date", true),
             new TableColumnSetting("End Date", true),
             new TableColumnSetting("Status", true),
+            new TableColumnSetting("Action", false)
         };
+    }
+
+    protected void ProjectDeleted()
+    {
+        GetAllProjects();
+    }
+
+    private void RedirectToAddEditProject()
+    {
+        NavigationManager.NavigateTo("/addproject");
     }
 
 }
