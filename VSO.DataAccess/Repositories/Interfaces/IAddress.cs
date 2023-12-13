@@ -15,7 +15,7 @@ namespace VSO.DataAccess.Repositories.Interfaces
 
         public void DeleteAddress(int id);
 
-        public List<Address> GetAllAddress(int id, string addressType);
+        public Task<IQueryable<Address>> GetAllAddress(int id, string addressType);
 
         public Address GetAddressById(int id);
     }

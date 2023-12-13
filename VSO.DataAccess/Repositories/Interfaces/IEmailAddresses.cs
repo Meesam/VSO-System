@@ -15,7 +15,7 @@ namespace VSO.DataAccess.Repositories.Interfaces
 
         public void DeleteEmail(int id);
 
-        public List<EmailAddress> GetAllEmails(int id,string emailType);
+        public Task<IQueryable<EmailAddress>> GetAllEmails(int id,string emailType);
 
         public EmailAddress GetEmailById(int id);
     }

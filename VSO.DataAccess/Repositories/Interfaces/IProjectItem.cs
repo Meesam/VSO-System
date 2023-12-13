@@ -15,7 +15,7 @@ namespace VSO.DataAccess.Repositories.Interfaces
 
         public void DeleteProjectItem(int itemId);
 
-        public List<ProjectItem> GetAllProjectItem(int projectId);
+        public Task<IQueryable<ProjectItem>> GetAllProjectItem(int projectId);
 
         public ProjectItem GetProjectItemById(int itemId);
     }

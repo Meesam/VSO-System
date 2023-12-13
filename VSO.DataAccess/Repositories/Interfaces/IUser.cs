@@ -15,7 +15,7 @@ namespace VSO.DataAccess.Repositories.Interfaces
 
         public void DeleteUser(int id);
 
-        public List<User> GetAllUser();
+        public Task<IQueryable<User>> GetAllUser();
 
         public User GetUserById(int id);
     }
