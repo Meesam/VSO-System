@@ -1,5 +1,6 @@
 ﻿@inject NavigationManager NavigationManager
 @inject ICustomer ICustomerService
+@inject ToastService toastService
 
 @if (TableData == null || Columns == null)
 {
@@ -45,6 +46,9 @@ else
     public List<TableColumnSetting>? Columns { get; set; }
 
     [Parameter]
+    public EventCallback OnCustomerDeleted { get; set; }
+
+    [Parameter]
     public List<Customer>? TableData { get; set; }
 
     private void RedirectToAddCustomerWithId(int id)
@@ -52,16 +56,18 @@ else
         NavigationManager.NavigateTo($"/addcustomer/{id}");
     }
 
-    private void DeleteCustomer(int id)
+    protected async Task DeleteCustomer(int id)
     {
         try
         {
             ICustomerService.DeleteCustomer(id);
+            toastService.ShowToast("Customer deleted successfully", ToastLevel.Success);
+            await OnCustomerDeleted.InvokeAsync();
             NavigationManager.NavigateTo("/customers");
         }
         catch(Exception)
         {
-            throw;
+            toastService.ShowToast("An error occured, Try again", ToastLevel.Error);
         }
 
     }

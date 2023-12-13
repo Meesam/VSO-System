@@ -25,6 +25,7 @@ builder.Services.AddScoped<IAddress, AddressImplement>();
 builder.Services.AddScoped<IEmailAddresses, EmailAddressesImplement>();
 builder.Services.AddScoped<IProject, ProjectImplement>();
 builder.Services.AddScoped<IProjectItem, ProjectItemImpelement>();
+builder.Services.AddScoped<ToastService>();
 
 var app = builder.Build();
 

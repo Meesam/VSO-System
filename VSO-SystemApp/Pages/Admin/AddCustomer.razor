@@ -2,6 +2,7 @@
 @page "/addcustomer/{id:int}"
 @inject NavigationManager NavigationManager
 @inject ICustomer ICustomerService
+@inject ToastService toastService
 
 <Breadcrumb CurrentRoute="@NavigationManager.Uri.Substring(NavigationManager.BaseUri.Length - 1).ToString().Replace("/", "").ToLower()" />
 
@@ -78,11 +79,13 @@
             {
                 ICustomerService.AddCustomer(customer);
                 customer = new();
+                toastService.ShowToast("Customer added successfully", ToastLevel.Success);
                 NavigationManager.NavigateTo("/customers");
             }
             else
             {
                 ICustomerService.UpdateCustomer(customer);
+                toastService.ShowToast("Customer updated successfully", ToastLevel.Success);
                 NavigationManager.NavigateTo("/customers");
             }
 
