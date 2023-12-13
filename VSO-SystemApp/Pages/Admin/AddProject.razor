@@ -1,7 +1,7 @@
 ﻿@page "/addcustomer"
 @page "/addcustomer/{id:int}"
 @inject NavigationManager NavigationManager
-@inject ICustomer ICustomerService
+@inject IProject ICustomerService
 @inject ToastService toastService
 
 <Breadcrumb CurrentRoute="@NavigationManager.Uri.Substring(NavigationManager.BaseUri.Length - 1).ToString().Replace("/", "").ToLower()" />
@@ -50,7 +50,7 @@
             </div>
         </div>
     </div>
-   
+
 </EditForm>
 
 
@@ -63,11 +63,11 @@
 
     protected override void OnInitialized()
     {
-        if(Id <= 0)
+        if (Id <= 0)
         {
             customer = new();
             ButtonText = "Submit";
-        } 
+        }
         else
         {
             customer = ICustomerService.GetCustomerById(Id);

@@ -50,7 +50,7 @@
             </div>
         </div>
     </div>
-   
+
 </EditForm>
 
 
@@ -63,11 +63,11 @@
 
     protected override void OnInitialized()
     {
-        if(Id <= 0)
+        if (Id <= 0)
         {
             customer = new();
             ButtonText = "Submit";
-        } 
+        }
         else
         {
             customer = ICustomerService.GetCustomerById(Id);
