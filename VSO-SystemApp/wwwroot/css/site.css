@@ -821,6 +821,19 @@ th{
   width: 100vw;
 }
 
+.w-max{
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.w-14{
+  width: 3.5rem;
+}
+
+.w-56{
+  width: 14rem;
+}
+
 .max-w-6xl{
   max-width: 72rem;
 }
@@ -970,6 +983,10 @@ th{
   margin-bottom: calc(2rem * var(--tw-space-y-reverse));
 }
 
+.overflow-hidden{
+  overflow: hidden;
+}
+
 .overflow-visible{
   overflow: visible;
 }
@@ -986,6 +1003,14 @@ th{
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.text-ellipsis{
+  text-overflow: ellipsis;
+}
+
+.text-clip{
+  text-overflow: clip;
 }
 
 .whitespace-nowrap{
@@ -1027,6 +1052,10 @@ th{
 
 .border-t{
   border-top-width: 1px;
+}
+
+.border-none{
+  border-style: none;
 }
 
 .border-gray-200{
@@ -1127,22 +1156,6 @@ th{
 
 .p-6{
   padding: 1.5rem;
-}
-
-.p-\[2\.5rem\]{
-  padding: 2.5rem;
-}
-
-.p-\[1rem\]{
-  padding: 1rem;
-}
-
-.p-\[0\.5rem\]{
-  padding: 0.5rem;
-}
-
-.p-\[0\.7rem\]{
-  padding: 0.7rem;
 }
 
 .p-\[0\.6rem\]{

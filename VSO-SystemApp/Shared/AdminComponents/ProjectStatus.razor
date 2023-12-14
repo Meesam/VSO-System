@@ -1,0 +1,35 @@
+﻿<div class="@CssClass("flex p-2 text-xs text-white w-max rounded-full", BackGroudColor)">@Title</div>
+
+@code {
+    [Parameter]
+    public string Title { get; set; } = "";
+
+    private string? BackGroudColor { get; set; }
+
+    protected override void OnInitialized()
+    {
+        BackGroudColor = GetBgColor();
+        base.OnInitialized();
+    }
+
+    private string GetBgColor()
+    {
+        switch (Title)
+        {
+            case "In Progress":
+                return "bg-yellow-400";
+
+            case "Completed":
+                return "bg-green-400";
+
+            case "Todo":
+                return "bg-sky-400";
+
+            case "Stopped":
+                return "bg-red-400";
+
+            default:
+                return "bg-white";
+        }
+    }
+}

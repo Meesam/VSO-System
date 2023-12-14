@@ -27,13 +27,15 @@ else
                 <tr class="bg-white hover:bg-gray-50 cursor-pointer">
                     <td class="p-3 text-sm text-gray-700">@item.Name</td>
                     <td class="p-3 text-sm text-gray-700">@item.ProjectType</td>
-                    <td class="p-3 text-sm text-gray-700">Na</td>
-                    <td class="p-3 text-sm text-gray-700">Na</td>
-                    <td class="p-3 text-sm text-gray-700">Na</td>
-                    <td class="p-3 text-sm text-gray-700">Na</td>
-                    <td class="p-3 text-sm flex gap-2">
-                        <i class="bi bi-pencil text-sky-500" @onclick="@(()=> RedirectToAddProjectWithId(item.Id))"></i>
-                        <i class="bi bi-trash3 text-red-500" @onclick="@(()=> DeleteProject(item.Id))"></i>
+                    <td class="p-3 text-sm text-gray-700 text-ellipsis">@item.Description</td>
+                    <td class="p-3 text-sm text-gray-700">@item.ProjectStartDate.ToString("dd-MMM-yyyy")</td>
+                    <td class="p-3 text-sm text-gray-700">@item.ProjectEndDate</td>
+                    <td class="p-3 text-sm text-gray-700">
+                        <ProjectStatus Title="@item.ProjectStatus" />
+                    </td>
+                    <td class="p-3 text-sm">
+                        <i class="bi bi-pencil text-sky-500" title="Edit" @onclick="@(()=> RedirectToAddProjectWithId(item.Id))"></i>
+                        <i class="bi bi-trash3 text-red-500" title="Delete" @onclick="@(()=> DeleteProject(item.Id))"></i>
                     </td>
                 </tr>
             }
@@ -71,6 +73,5 @@ else
         {
             toastService.ShowToast("An error occured, Try again", ToastLevel.Error);
         }
-
     }
 }
