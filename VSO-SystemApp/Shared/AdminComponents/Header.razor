@@ -3,34 +3,54 @@
 <AuthorizeView>
     <Authorized>
     <div class="bg-white border-b h-16 px-4 flex justify-between items-center">
-    
-           
-                <HeaderSearch />
+       <HeaderSearch />
                 @*<a href="Identity/Account/Manage">Hello @context.User.Identity?.Name</a>*@
-            
-                <div class="flex items-center space-x-4">
-                    <div class="text-lg">
-                        <i class="bi bi-chat-square-dots text-xl text-sky-700"></i>
-                    </div>
-                    <div class="text-xl">
-                        <i class="bi bi-bell text-xl text-sky-700"></i>
-                    </div>
-                    <div class="text-xl">
-                        <i class="bi bi-person-circle text-xl text-sky-700"></i>
-                    </div>
+
+            <div class="flex items-center space-x-4 relative">
+                <div class="text-xl">
+                  <i class="bi bi-chat-square-dots text-xl text-sky-700"></i>
                 </div>
-           
-            @*
-            <NotAuthorized>
-            <a href="Identity/Account/Register">Register</a>
-            <a href="Identity/Account/Login">Login</a>
-            </NotAuthorized>
-            *@
+                <div class="text-xl">
+                   <i class="bi bi-bell text-xl text-sky-700" @onclick="OpenNotification"></i>
+                </div>
+                <div class="text-xl">
+                   <i class="bi bi-person-circle text-xl text-sky-700" @onclick="OpenProfile"></i>
+                </div>
+            </div>
     </div>
+        @if (IsNotificationOpen)
+        {
+            <div class="absolute top-12 bottom-0 right-14 z-50 bg-neutral-50 border border-neutral-200 shadow-lg rounded-md w-56 h-60 p-2 flex items-center justify-center">
+                <p class="text-gray-500 text-base">
+                    No notification...
+                </p>
+            </div>
+        }
+        @if (IsProfileOpen)
+        {
+            <div class="absolute top-12 bottom-0 right-5 z-50 bg-neutral-50 border border-neutral-200 shadow-lg rounded-md w-56 h-60 p-2 flex items-center justify-center">
+                <p class="text-gray-500 text-base">
+                    My Profile
+                </p>
+            </div>
+        }
      </Authorized>
 </AuthorizeView>
 
 
 @code {
-    
+    private bool IsNotificationOpen { get; set; } = false;
+    private bool IsProfileOpen { get; set; } = false;
+
+    private void OpenNotification()
+    {
+        IsProfileOpen = false;
+        IsNotificationOpen = !IsNotificationOpen;
+    }
+
+    private void OpenProfile()
+    {
+        IsNotificationOpen = false;
+        IsProfileOpen = !IsProfileOpen;
+    }
 }
